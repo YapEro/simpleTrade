@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [ "es2015", "dom" ],
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "files":[
+    "./app.ts"
+  ],
+  "include":[
+    "./node_server/",
+    "./models/"
+  ],
+  "exclude":[
+    "./node_modules/**/*.*"
+  ]
+}

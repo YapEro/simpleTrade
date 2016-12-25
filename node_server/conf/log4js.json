@@ -1,0 +1,23 @@
+{
+  "appenders":
+  [
+    {
+      "type":"console",
+      "category":"console"
+    },
+    {
+      "category":"log_date",
+      "type": "dateFile",
+      "filename": "./node_server/logs/date",
+      "alwaysIncludePattern": true,
+      "pattern": "-yyyy-MM-dd-hh.log"
+
+    }
+  ],
+  "replaceConsole": true,
+  "levels":
+  {
+    "console":"ALL",
+    "log_date":"ALL"
+  }
+}
