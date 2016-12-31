@@ -1,0 +1,24 @@
+[2016-12-30 11:58:07.636] [ERROR] log_date - Owner:[router.customerRouter] - Query parameters invalida, entity name is required!
+[2016-12-30 12:01:26.924] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-30 14:25:35.176] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-30 14:40:39.741] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-30 14:40:39.762] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 14:46:38.508] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-30 14:46:38.532] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 14:47:11.282] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-30 14:47:11.296] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 14:50:09.586] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-30 14:50:09.606] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 15:11:58.148] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-30 15:14:14.325] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-30 15:14:14.347] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 15:15:01.592] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-30 15:15:01.607] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 15:23:03.806] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 15:29:01.535] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 15:29:48.789] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 15:30:32.811] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 15:30:53.660] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 15:31:13.971] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 15:31:50.752] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-30 15:42:58.335] [ERROR] log_date - Owner:[utils.daoUtils] - null

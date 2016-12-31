@@ -5,8 +5,8 @@ import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
 import log4js = require("log4js");
 
-let index = require('./node_server/routes/index');
-let cusRouter = require('./node_server/routes/customerRouter');
+let index = require('./node_server/routers/index');
+let cusRouter = require('./node_server/routers/customerRouter');
 
 let app = express();
 let logger = log4js.getLogger("console");

@@ -34,6 +34,10 @@ class logUtils {
     //格式化日志内容，如果是对象，将其转换JSON字符串，并添加纪录类的名称
     getMsgString(msg) {
         let msgStr;
+        if (util_1.isError(msg)) {
+            let err = msg;
+            msgStr = `error \t name: ${err.name};\r\n\t message:${err.message};\r\n\t stack:${err.stack}`;
+        }
         if (util_1.isObject(msg)) {
             msgStr = JSON.stringify(msg);
         }

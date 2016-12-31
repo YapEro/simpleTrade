@@ -1,4 +1,4 @@
-import {isObject} from "util";
+import {isObject, isError} from "util";
 import {Logger} from "log4js";
 /**
  * Created by sean on 2016/12/14.
@@ -42,6 +42,10 @@ export class logUtils{
     //格式化日志内容，如果是对象，将其转换JSON字符串，并添加纪录类的名称
     private getMsgString(msg:any):string{
         let msgStr:string;
+        if(isError(msg)){
+            let err:Error = msg;
+            msgStr = `error \t name: ${err.name};\r\n\t message:${err.message};\r\n\t stack:${err.stack}`;
+        }
         if(isObject(msg)){
             msgStr = JSON.stringify(msg);
         } else {
