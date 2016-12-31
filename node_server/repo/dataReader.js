@@ -1,7 +1,4 @@
 "use strict";
-/**
- * Created by sean on 2016/12/23.
- */
 const mysql = require("mysql");
 const logUtils_1 = require("../utils/logUtils");
 const modelDecorator_1 = require("../../models/modelDecorator");
@@ -19,7 +16,7 @@ class dataReader {
             throw err;
         }
     }
-    queryList(req, res) {
+    queryList(req, res, handleList) {
         let pool = mysql.createPool(this.dbConf);
         let criteria = req.body.criteria;
         let order = req.body.order;
@@ -57,13 +54,15 @@ class dataReader {
             this.handlerErr(err);
             //若有分页需求，先计算总数，再查询数据
             if (pagination) {
-                console.log("abcde1");
                 conn.query(sql.amountSql, (aErr, amount) => {
                     this.handlerErr(aErr);
                     conn.query(sql.dataSql, (dErr, data) => {
                         this.handlerErr(dErr);
+                        data = this.formatEntities(data);
+                        if (handleList)
+                            handleList(data);
                         let result = { total: amount[0].amount,
-                            data: this.formatEntities(data) };
+                            data: data };
                         this.logger.logDebug(result);
                         res.json(result);
                         conn.destroy();
@@ -74,6 +73,8 @@ class dataReader {
                 conn.query(sql.dataSql, (dErr, data) => {
                     this.handlerErr(dErr);
                     data = this.formatEntities(data);
+                    if (handleList)
+                        handleList(data);
                     res.json(data);
                     conn.destroy();
                 });

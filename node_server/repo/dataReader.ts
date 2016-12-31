@@ -1,6 +1,3 @@
-/**
- * Created by sean on 2016/12/23.
- */
 import * as mysql from "mysql"
 import {Request, Response} from "express"
 import {logUtils} from "../utils/logUtils";
@@ -22,7 +19,7 @@ export class dataReader{
             throw err;
         }
     }
-    public queryList(req:Request, res:Response){
+    public queryList(req:Request, res:Response, handleList?:Function){
         let pool:mysql.IPool = mysql.createPool(this.dbConf);
         let criteria:Array<any> = req.body.criteria;
         let order:Array<any> = req.body.order;
@@ -57,13 +54,14 @@ export class dataReader{
             this.handlerErr(err);
             //若有分页需求，先计算总数，再查询数据
             if(pagination){
-                console.log("abcde1");
                 conn.query(sql.amountSql, (aErr, amount) => {
                     this.handlerErr(aErr);
                     conn.query(sql.dataSql, (dErr, data) => {
                         this.handlerErr(dErr);
+                        data = this.formatEntities(data);
+                        if(handleList) handleList(data);
                         let result = {total:amount[0].amount,
-                            data: this.formatEntities(data)};
+                            data: data};
                         this.logger.logDebug(result);
                         res.json(result);
                         conn.destroy();
@@ -73,6 +71,7 @@ export class dataReader{
                 conn.query(sql.dataSql, (dErr, data) => {
                     this.handlerErr(dErr);
                     data = this.formatEntities(data);
+                    if(handleList) handleList(data);
                     res.json(data);
                     conn.destroy();
                 });

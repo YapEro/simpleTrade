@@ -22,3 +22,25 @@
 [2016-12-30 15:31:13.971] [ERROR] log_date - Owner:[utils.daoUtils] - null
 [2016-12-30 15:31:50.752] [ERROR] log_date - Owner:[utils.daoUtils] - null
 [2016-12-30 15:42:58.335] [ERROR] log_date - Owner:[utils.daoUtils] - null
+[2016-12-31 16:55:50.616] [ERROR] log_date - Owner:[repo.dataWriter] - customer:data is invalid!
+[2016-12-31 16:55:50.616] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 16:55:50.669] [ERROR] log_date - Owner:[repo.dataWriter] - customer:data is invalid!
+[2016-12-31 16:55:50.669] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 16:55:50.685] [ERROR] log_date - Owner:[repo.dataWriter] - customer:data is invalid!
+[2016-12-31 16:55:50.685] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 16:55:50.700] [ERROR] log_date - Owner:[repo.dataWriter] - customer:data is invalid!
+[2016-12-31 16:55:50.700] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 16:59:02.737] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_NO_DEFAULT_FOR_FIELD","errno":1364,"sqlState":"HY000","index":0}
+[2016-12-31 16:59:02.775] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2016-12-31 16:59:02.791] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2016-12-31 16:59:02.806] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_TRUNCATED_WRONG_VALUE_FOR_FIELD","errno":1366,"sqlState":"HY000","index":0}
+[2016-12-31 17:00:20.335] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_NO_DEFAULT_FOR_FIELD","errno":1364,"sqlState":"HY000","index":0}
+[2016-12-31 17:00:20.366] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2016-12-31 17:00:20.382] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2016-12-31 17:47:45.832] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_NO_DEFAULT_FOR_FIELD","errno":1364,"sqlState":"HY000","index":0}
+[2016-12-31 17:48:16.063] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2016-12-31 17:48:16.101] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2016-12-31 17:48:16.161] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_TRUNCATED_WRONG_VALUE_FOR_FIELD","errno":1366,"sqlState":"HY000","index":0}
+[2016-12-31 17:50:47.927] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_TRUNCATED_WRONG_VALUE_FOR_FIELD","errno":1366,"sqlState":"HY000","index":0}
+[2016-12-31 17:53:47.457] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_TRUNCATED_WRONG_VALUE_FOR_FIELD","errno":1366,"sqlState":"HY000","index":0}
+[2016-12-31 17:57:41.895] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}

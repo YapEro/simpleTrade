@@ -4,7 +4,7 @@ import "reflect-metadata";
  * Created by 谭宏志 on 2016/12/14.
  */
 export class customer{
-    @propertyExt({field:"c_no", isPK:true, validations:{require : true}, label:"主键"})
+    @propertyExt({field:"c_no", isPK:true, label:"主键"})
     cNo:number;
     @propertyExt({field:"c_name", validations:{require : true}, label:"客户名称"})
     cName:string;
@@ -12,6 +12,6 @@ export class customer{
     cPhoneNo:string;
     @propertyExt({field:"c_email", validations:{regex: "\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"}, label:"电子邮件"})
     cEmail:string;
-    @propertyExt({field:"c_no", validations:{require : true}, label:"主键"})
+    @propertyExt({field:"c_address", label:"地址"})
     cAddress:string;
 }

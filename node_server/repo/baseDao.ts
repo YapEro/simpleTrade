@@ -1,8 +1,10 @@
 import {Request, Response} from "express";
 import {dataReader} from "./dataReader";
+import {dataWriter} from "./dataWriter";
 import {logUtils} from "../utils/logUtils";
-export class baseDao<T>{
+export abstract class baseDao<T>{
     private reader:dataReader;
+    private writer:dataWriter;
     private modelCort:{new():T};
     private modelName:string;
     private modelInstance:Object;
@@ -12,13 +14,17 @@ export class baseDao<T>{
         this.modelName = cort.name;
         this.modelInstance = new cort();
         this.reader = new dataReader(this.modelName, this.modelInstance);
+        this.writer = new dataWriter(this.modelName, this.modelInstance);
         this.logger = new logUtils(`repo.${this.modelName}`);
     }
     public queryList(req:Request, res:Response){
-        this.reader.queryList(req, res);
+        this.reader.queryList(req, res, this.handleList);
     }
 
-    public update(req:Request, res:Response){
-
+    public saveData(req:Request, res:Response){
+        this.writer.saveEntity(req, res, this.beforeSave, this.afterSave);
     }
+    protected abstract handleList(data:any[]):void;
+    protected abstract beforeSave(data:any):string;
+    protected abstract afterSave(data:any):void;
 }

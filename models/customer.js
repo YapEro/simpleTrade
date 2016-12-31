@@ -16,7 +16,7 @@ require("reflect-metadata");
 class customer {
 }
 __decorate([
-    modelDecorator_1.propertyExt({ field: "c_no", isPK: true, validations: { require: true }, label: "主键" }),
+    modelDecorator_1.propertyExt({ field: "c_no", isPK: true, label: "主键" }),
     __metadata("design:type", Number)
 ], customer.prototype, "cNo", void 0);
 __decorate([
@@ -32,7 +32,7 @@ __decorate([
     __metadata("design:type", String)
 ], customer.prototype, "cEmail", void 0);
 __decorate([
-    modelDecorator_1.propertyExt({ field: "c_no", validations: { require: true }, label: "主键" }),
+    modelDecorator_1.propertyExt({ field: "c_address", label: "地址" }),
     __metadata("design:type", String)
 ], customer.prototype, "cAddress", void 0);
 exports.customer = customer;
