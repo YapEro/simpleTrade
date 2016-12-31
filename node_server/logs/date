@@ -44,3 +44,28 @@
 [2016-12-31 17:50:47.927] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_TRUNCATED_WRONG_VALUE_FOR_FIELD","errno":1366,"sqlState":"HY000","index":0}
 [2016-12-31 17:53:47.457] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_TRUNCATED_WRONG_VALUE_FOR_FIELD","errno":1366,"sqlState":"HY000","index":0}
 [2016-12-31 17:57:41.895] [ERROR] log_date - Owner:[repo.dataWriter] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2016-12-31 18:51:53.435] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 18:51:53.456] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 18:51:53.459] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 18:54:26.303] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 18:54:26.350] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 18:54:26.365] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 19:49:36.488] [ERROR] log_date - Owner:[repo.dataWriter] - cPhoneNo:18511222211 is not match /(^(\d{3,4}-)?\d{7,8})$|(13[0-9]{9})$/!
+
+[2016-12-31 19:49:36.503] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 19:49:36.556] [ERROR] log_date - Owner:[repo.dataWriter] - cPhoneNo:18511222211 is not match /(^(\d{3,4}-)?\d{7,8})$|(13[0-9]{9})$/!
+
+[2016-12-31 19:49:36.572] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 19:49:36.657] [ERROR] log_date - Owner:[repo.dataWriter] - cName is require property, please input value!
+cPhoneNo:18511222211 is not match /(^(\d{3,4}-)?\d{7,8})$|(13[0-9]{9})$/!
+cEmail:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2016-12-31 19:49:36.673] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 19:51:51.788] [ERROR] log_date - Owner:[repo.dataWriter] - cName is require property, please input value!
+cEmail:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2016-12-31 19:51:51.788] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2016-12-31 19:55:02.000] [ERROR] log_date - Owner:[repo.dataWriter] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2016-12-31 19:55:02.000] [ERROR] log_date - Owner:[router.customerRouter] - {}

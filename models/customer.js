@@ -24,11 +24,11 @@ __decorate([
     __metadata("design:type", String)
 ], customer.prototype, "cName", void 0);
 __decorate([
-    modelDecorator_1.propertyExt({ field: "c_phone_no", validations: { regex: "(^(\d{3,4}-)?\d{7,8})$|(13[0-9]{9})" }, label: "联系电话" }),
+    modelDecorator_1.propertyExt({ field: "c_phone_no", validations: { regex: /^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/ }, label: "联系电话" }),
     __metadata("design:type", String)
 ], customer.prototype, "cPhoneNo", void 0);
 __decorate([
-    modelDecorator_1.propertyExt({ field: "c_email", validations: { regex: "\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" }, label: "电子邮件" }),
+    modelDecorator_1.propertyExt({ field: "c_email", validations: { regex: /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/ }, label: "电子邮件" }),
     __metadata("design:type", String)
 ], customer.prototype, "cEmail", void 0);
 __decorate([

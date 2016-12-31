@@ -9,8 +9,7 @@ describe("测试自定义装饰器", function () {
         let metadatas = decorator.getMetas("customer", customer_1.customer.prototype);
         console.log(JSON.stringify(metadatas));
         expect(metadatas).to.contain({ "name": "cNo",
-            "metadatas": { "field": "c_no", "isPK": true,
-                "validations": { "require": true }, "label": "主键", "type": "Number" } });
+            "metadatas": { "field": "c_no", "isPK": true, "label": "主键", "type": "Number" } });
         done();
     });
 });
@@ -62,7 +61,7 @@ describe("测试baseDao的方法", () => {
                 send({
                 cNo: null,
                 cName: `username${Math.random() * 1000}`,
-                cPhoneNo: "123131224",
+                cPhoneNo: "18511222211",
                 cEmail: "email@163.com",
                 cAddress: "changsha hunan"
             }).
@@ -76,8 +75,22 @@ describe("测试baseDao的方法", () => {
                 send({
                 cNo: 1,
                 cName: `username${Math.random() * 1000}`,
-                cPhoneNo: "123131224",
+                cPhoneNo: "18511222211",
                 cEmail: "email@163.com",
+                cAddress: "changsha hunan"
+            }).
+                end((err, result) => {
+                console.log(result.text);
+                done();
+            });
+        });
+        it("更新客户数据验证测试", (done) => {
+            request.post(saveUrl).
+                send({
+                cNo: 1,
+                cName: '',
+                cPhoneNo: "18511222211",
+                cEmail: "awef",
                 cAddress: "changsha hunan"
             }).
                 end((err, result) => {

@@ -22,10 +22,13 @@ export class dataWriter{
     public saveEntity(req:Request, res:Response, beforeSave?:Function, afterSave?:Function){
         let msg:string;
         let keyProperty = this.getKeyProperty();
-        if(!keyProperty) {
+        //配置检查
+        if(!keyProperty)
             msg = `${this.modelName}:has no primary key property define!`;
-        }
-        if(beforeSave) {
+        else
+            msg = this.validateInput(req.body);
+        //自定义检查
+        if(!msg && beforeSave) {
             msg = beforeSave(req.body);
         }
         if(msg){
@@ -69,14 +72,24 @@ export class dataWriter{
                     });
                 } else {
                     if(afterSave) afterSave(this.modelInstance);
-                    res.json({result:true, message:`Successful for update data ${this.modelInstance}`});
+                    res.json({result:true, message:`Successful for update data ${this.modelName}`});
                 }
             });
         });
     }
+    public deleteCollection(keys:Array<number>){
+
+    }
+    public deleteData(key:number){
+
+    }
+    //根据验证配置对输入数据进行验证
     private validateInput(data:any):string{
+        let validMsg:string = "";
         this.modelMetadata.forEach(metadata=>{
-            if(metadata.metadatas.validations){
+            let validations = metadata.metadatas.validations;
+            let proTitle = metadata.metadatas.label;
+            if(validations){
                 let proName:string;
                 for(let item in data){
                     if(item == metadata.name){
@@ -85,11 +98,14 @@ export class dataWriter{
                     }
                 }
                 if(proName){
-
+                    if(validations.require && !data[proName])
+                        validMsg += `${proTitle} is require property, please input value!\r\n`;
+                    if(validations.regex && !(new RegExp(validations.regex)).test(data[proName]))
+                        validMsg += `${proTitle}:${data[proName]} is not match ${validations.regex}!\r\n`;
                 }
             }
         });
-        return null;
+        return validMsg;
     }
     //从元数据中根据属性名称读取表字段名
     private getFieldWithProperty(proName:string){

@@ -8,9 +8,9 @@ export class customer{
     cNo:number;
     @propertyExt({field:"c_name", validations:{require : true}, label:"客户名称"})
     cName:string;
-    @propertyExt({field:"c_phone_no", validations:{regex:"(^(\d{3,4}-)?\d{7,8})$|(13[0-9]{9})"}, label:"联系电话"})
+    @propertyExt({field:"c_phone_no", validations:{regex:/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/}, label:"联系电话"})
     cPhoneNo:string;
-    @propertyExt({field:"c_email", validations:{regex: "\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"}, label:"电子邮件"})
+    @propertyExt({field:"c_email", validations:{regex: /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/}, label:"电子邮件"})
     cEmail:string;
     @propertyExt({field:"c_address", label:"地址"})
     cAddress:string;
