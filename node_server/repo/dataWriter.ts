@@ -1,24 +1,9 @@
 import * as mysql from "mysql"
 import {Request, Response} from "express"
-import {logUtils} from "../utils/logUtils";
-import {getMetas} from "../../models/modelDecorator";
-export class dataWriter{
-    private dbConf:JSON = require("../conf/db.json");
-    private logger = new logUtils("repo.dataWriter");
-    private modelMetadata:any[];
-    private modelName:string;
-    private modelInstance:Object;
-    public constructor(modelName:string, modelInstance:Object){
-        this.modelName = modelName;
-        this.modelInstance = modelInstance;
-        this.modelMetadata = getMetas(this.modelName, this.modelInstance);
-    }
-    private handlerErr(err:Error){
-        if(err){
-            this.logger.logError(err);
-            throw err;
-        }
-    }
+import {isArray} from "util";
+import {dataHandler} from "./dataHandler";
+export class dataWriter extends dataHandler{
+    //新增或更新对象
     public saveEntity(req:Request, res:Response, beforeSave?:Function, afterSave?:Function){
         let msg:string;
         let keyProperty = this.getKeyProperty();
@@ -27,14 +12,11 @@ export class dataWriter{
             msg = `${this.modelName}:has no primary key property define!`;
         else
             msg = this.validateInput(req.body);
-        //自定义检查
-        if(!msg && beforeSave) {
-            msg = beforeSave(req.body);
-        }
         if(msg){
             this.logger.logError(msg);
             throw new Error(msg);
         }
+        if(beforeSave && !beforeSave(req.body, res)) return;
         this.modelInstance = req.body;
         let sql:string = "", fieldSql:string = "", valueSql:string = "";
         //更新对象
@@ -61,27 +43,58 @@ export class dataWriter{
         let pool:mysql.IPool = mysql.createPool(this.dbConf);
         pool.getConnection((err, conn)=>{
             this.handlerErr(err);
+            msg = null;
             conn.query(sql,(cErr, result)=>{
                 this.handlerErr(cErr);
+                if(afterSave) msg = afterSave(this.modelInstance);
                 if(!this.modelInstance[keyProperty]){
-                    conn.query("select LAST_INSERT_ID() as nKey", (qErr, newKey)=>{
-                        this.handlerErr(qErr);
-                        this.logger.logDebug(`insert new key:${newKey[0].nKey}`);
-                        if(afterSave) afterSave(this.modelInstance);
-                        res.json({result:true, content:newKey[0].nKey, message: `Successful for insert data ${this.modelName}`});
-                    });
+                    res.json({result:true, content:result.insertId,
+                        message:msg?msg:`Successful for insert data [${this.modelName}]`});
                 } else {
-                    if(afterSave) afterSave(this.modelInstance);
-                    res.json({result:true, message:`Successful for update data ${this.modelName}`});
+                    res.json({result:true,
+                        message:msg?msg:`Successful for update data [${this.modelName}]`});
                 }
             });
         });
     }
-    public deleteCollection(keys:Array<number>){
-
-    }
-    public deleteData(key:number){
-
+    //删除一个或多个对象
+    public deleteData(req:Request, res:Response, beforeDelete?:Function, afterDelete?:Function){
+        let delKey = req.body;
+        let msg:string;
+        if(!delKey.keys)
+            msg = `${this.modelName}:has no prameters [keys] for delete!`;
+        let keyProperty = this.getKeyProperty();
+        //配置检查
+        if(!keyProperty)
+            msg = `${this.modelName}:has no primary key property define!`;
+        if(msg){
+            this.logger.logError(msg);
+            throw new Error(msg);
+        }
+        let delSql:string = `delete from ${this.modelName} where ${this.getFieldWithProperty(keyProperty)} `;
+        if(isArray(delKey.keys)){
+            delSql += " in ("
+            for(let iKey of delKey.keys){
+                delSql += `${iKey},`;
+            }
+            delSql = this.cutoffLastChar(",", delSql);
+            delSql += ")";
+        } else{
+            delSql += `=${delKey.keys}`;
+        }
+        if(beforeDelete && !beforeDelete(delKey.keys, res)) return;
+        this.logger.logDebug(delSql);
+        let pool:mysql.IPool = mysql.createPool(this.dbConf);
+        pool.getConnection((err, conn)=>{
+            this.handlerErr(err);
+            msg = null;
+            conn.query(delSql,(cErr, result)=>{
+                this.handlerErr(cErr);
+                if(afterDelete) msg = afterDelete(delKey.keys);
+                res.json({result:true,
+                    message:msg?msg:`Successful for delete [${this.modelName}] ${result.affectedRows} datas`});
+            });
+        });
     }
     //根据验证配置对输入数据进行验证
     private validateInput(data:any):string{
@@ -106,38 +119,5 @@ export class dataWriter{
             }
         });
         return validMsg;
-    }
-    //从元数据中根据属性名称读取表字段名
-    private getFieldWithProperty(proName:string){
-        let meta = this.modelMetadata.find(item =>item.name == proName);
-        if(meta){
-            return meta.metadatas.field;
-        }
-        return proName;
-    }
-    //读取对象主键属性名称
-    private getKeyProperty():string{
-        let keyMetadata = this.modelMetadata.find(item=>item.metadatas.isPK);
-        if(keyMetadata) return keyMetadata.name;
-        return null;
-    }
-    //仅对日期型、字符型添加单引号
-    private formatValue(value:any, proName:string){
-        let meta = this.modelMetadata.find(item =>item.name == proName);
-        if(meta){
-            switch(meta.metadatas.type.toLocaleLowerCase()){
-                case "string":
-                case "date":
-                    return `'${value}'`;
-            }
-        }
-        return `${value}`;
-    }
-    //删除最后的特殊字符
-    private cutoffLastChar(char:string, str:string){
-        if(str && str.endsWith(char)){
-            return str.substr(0, str.length - char.length);
-        }
-        return str;
     }
 }

@@ -14,9 +14,21 @@ class baseDao {
     queryList(req, res) {
         this.reader.queryList(req, res, this.handleList);
     }
+    queryEntity(req, res) {
+        this.reader.queryWithKey(req, res, this.handleEntity);
+    }
+    deleteData(req, res) {
+        this.writer.deleteData(req, res, this.beforeDelete, this.afterDelete);
+    }
     saveData(req, res) {
         this.writer.saveEntity(req, res, this.beforeSave, this.afterSave);
     }
+    handleList(data) { }
+    handleEntity(data) { }
+    beforeSave(data, res) { return true; }
+    afterSave(data) { return null; }
+    beforeDelete(keys, res) { return true; }
+    afterDelete(keys) { return null; }
 }
 exports.baseDao = baseDao;
 //# sourceMappingURL=baseDao.js.map

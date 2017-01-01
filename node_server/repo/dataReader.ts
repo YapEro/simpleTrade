@@ -1,31 +1,37 @@
 import * as mysql from "mysql"
 import {Request, Response} from "express"
-import {logUtils} from "../utils/logUtils";
-import {getMetas} from "../../models/modelDecorator";
-export class dataReader{
-    private dbConf:JSON = require("../conf/db.json");
-    private logger = new logUtils("repo.dataReader");
-    private modelMetadata:any[];
-    private modelName:string;
-    private modelInstance:Object;
-    public constructor(modelName:string, modelInstance:Object){
-        this.modelName = modelName;
-        this.modelInstance = modelInstance;
-        this.modelMetadata = getMetas(this.modelName, this.modelInstance);
+import {dataHandler} from "./dataHandler";
+export class dataReader extends dataHandler{
+    public queryWithKey(req:Request, res:Response, handleEntity?:Function){
+        if(!this.modelName) throw Error("Query parameters invalida, entity name is required!");
+        let pool:mysql.IPool = mysql.createPool(this.dbConf);
+        let keyPro = this.getKeyProperty();
+        if(!keyPro) throw new Error(`${this.modelName}:has no primary key property define!`);
+        let keyValue = req.query.key;
+        if(!keyValue) throw new Error(`${this.modelName}:has no parameters ['key'] in request url!`);
+        let sql = `select * from ${this.modelName} where ${this.getFieldWithProperty(keyPro)}=${keyValue}`;
+        this.logger.logDebug(sql);
+        pool.getConnection((err, conn) => {
+            this.handlerErr(err);
+            conn.query(sql, (dErr, data) => {
+                super.handlerErr(dErr);
+                if(handleEntity) handleEntity(data);
+                let result = {result:true, content:data,
+                    message:`Query [${this.modelName}] data for key ${keyValue}`};
+                this.logger.logDebug(result);
+                res.json(result);
+                conn.destroy();
+            });
+        });
     }
-    private handlerErr(err:Error){
-        if(err){
-            this.logger.logError(err);
-            throw err;
-        }
-    }
+    //根据查询条件，查询数据
     public queryList(req:Request, res:Response, handleList?:Function){
+        if(!this.modelName) throw "Query parameters invalida, entity name is required!";
         let pool:mysql.IPool = mysql.createPool(this.dbConf);
         let criteria:Array<any> = req.body.criteria;
         let order:Array<any> = req.body.order;
         let pagination:any = req.body.pagination;
         let sql = {dataSql:"", amountSql:""}, sqlSuffix = "";
-        if(!this.modelName) throw "Query parameters invalida, entity name is required!";
         sql.dataSql = `Select * from ${this.modelName}`;
         if(criteria){
             sqlSuffix += " where ";
@@ -60,8 +66,8 @@ export class dataReader{
                         this.handlerErr(dErr);
                         data = this.formatEntities(data);
                         if(handleList) handleList(data);
-                        let result = {total:amount[0].amount,
-                            data: data};
+                        let result = {result:true, content:{total:amount[0].amount,
+                            data: data}, message:`Query [${this.modelName}] data ${data.length}`};
                         this.logger.logDebug(result);
                         res.json(result);
                         conn.destroy();
@@ -69,41 +75,16 @@ export class dataReader{
                 })
             } else {
                 conn.query(sql.dataSql, (dErr, data) => {
-                    this.handlerErr(dErr);
+                    super.handlerErr(dErr);
                     data = this.formatEntities(data);
                     if(handleList) handleList(data);
-                    res.json(data);
+                    let result = {result:true, content:data,
+                        message:`Query [${this.modelName}] data ${data.length}`};
+                    this.logger.logDebug(result);
+                    res.json(result);
                     conn.destroy();
                 });
             }
         });
-    }
-    //转换对象
-    private formatEntity(row:any){
-        let formatRow = {};
-        this.modelMetadata.forEach(({name, metadatas})=>{
-            for(let item in row){
-                if(item == metadatas.field){
-                    formatRow[name] = row[item];
-                }
-            }
-        });
-        return formatRow
-    }
-    //转换对象集合
-    private formatEntities(entities:any[]){
-        let formatRows = new Array();
-        entities.forEach(item=>{
-            formatRows.push(this.formatEntity(item));
-        });
-        return formatRows;
-    }
-    //从元数据中根据属性名称读取表字段名
-    private getFieldWithProperty(property:string){
-        let meta = this.modelMetadata.find(item =>item.name == property);
-        if(meta){
-            return meta.metadatas.field;
-        }
-        return property;
     }
 }

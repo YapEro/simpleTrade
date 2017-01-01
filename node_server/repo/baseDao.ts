@@ -2,7 +2,7 @@ import {Request, Response} from "express";
 import {dataReader} from "./dataReader";
 import {dataWriter} from "./dataWriter";
 import {logUtils} from "../utils/logUtils";
-export abstract class baseDao<T>{
+export class baseDao<T>{
     private reader:dataReader;
     private writer:dataWriter;
     private modelCort:{new():T};
@@ -20,11 +20,19 @@ export abstract class baseDao<T>{
     public queryList(req:Request, res:Response){
         this.reader.queryList(req, res, this.handleList);
     }
-
+    public queryEntity(req:Request, res:Response){
+        this.reader.queryWithKey(req, res, this.handleEntity);
+    }
+    public deleteData(req:Request, res:Response){
+        this.writer.deleteData(req, res, this.beforeDelete, this.afterDelete);
+    }
     public saveData(req:Request, res:Response){
         this.writer.saveEntity(req, res, this.beforeSave, this.afterSave);
     }
-    protected abstract handleList(data:any[]):void;
-    protected abstract beforeSave(data:any):string;
-    protected abstract afterSave(data:any):void;
+    protected handleList(data:any[]):void{}
+    protected handleEntity(data:any):void{}
+    protected beforeSave(data:any, res:Response):boolean{return true;}
+    protected afterSave(data:any):string{return null;}
+    protected beforeDelete(keys:any, res:Response):boolean{return true;}
+    protected afterDelete(keys:any):string{return null;}
 }

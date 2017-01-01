@@ -14,7 +14,7 @@ describe("测试自定义装饰器", function(){
     });
 });
 
-describe("测试baseDao的方法",()=>{
+describe("测试baseDao的方法(使用customer数据)",()=>{
     let app = require("../../app");
     let request = superTest(app);
     describe("查询所有客户数据",()=>{
@@ -23,6 +23,7 @@ describe("测试baseDao的方法",()=>{
             request.post(queryUrl).
             end((err:Error, result:any)=>{
                 console.log(result.text);
+                expect(result.text).to.contain("{\"result\":true");
                 done();
             });
         });
@@ -36,6 +37,7 @@ describe("测试baseDao的方法",()=>{
             }).
             end((err:Error, result:any)=>{
                 console.log(result.text);
+                expect(result.text).to.contain("{\"result\":true");
                 done();
             });
         });
@@ -51,11 +53,20 @@ describe("测试baseDao的方法",()=>{
             }).
             end((err:Error, result:any)=>{
                 console.log(result.text);
+                expect(result.text).to.contain("{\"result\":true");
+                done();
+            });
+        });
+        it("根据主键查询客户数据", (done)=>{
+            request.get("/customer/getCustomer?key=1").
+            end((err:Error, result:any)=>{
+                console.log(result.text);
+                expect(result.text).to.contain("{\"result\":true");
                 done();
             });
         });
     });
-    describe("保存客户数据",()=>{
+    describe("写客户数据",()=>{
         let saveUrl = "/customer/saveCustomer";
         it("新增客户数据", (done)=>{
             request.post(saveUrl).
@@ -96,6 +107,25 @@ describe("测试baseDao的方法",()=>{
             }).
             end((err:Error, result:any)=>{
                 console.log(result.text);
+                expect(result.text).to.contain("{\"result\":false");
+                done();
+            });
+        });
+        it("删除单一客户数据验证测试",(done)=>{
+            request.post("/customer/deleteCustomer").
+            send({keys:2}).
+            end((err:Error, result:any)=>{
+                console.log(result.text);
+                expect(result.text).to.contain("{\"result\":true");
+                done();
+            });
+        });
+        it("删除多条客户数据验证测试",(done)=>{
+            request.post("/customer/deleteCustomer").
+            send({keys:[2,3,4,5]}).
+            end((err:Error, result:any)=>{
+                console.log(result.text);
+                expect(result.text).to.contain("{\"result\":true");
                 done();
             });
         });
