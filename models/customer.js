@@ -35,5 +35,9 @@ __decorate([
     modelDecorator_1.propertyExt({ field: "c_address", label: "地址" }),
     __metadata("design:type", String)
 ], customer.prototype, "cAddress", void 0);
+__decorate([
+    modelDecorator_1.propertyExt({ field: "c_status", validations: { require: true }, label: "状态" }),
+    __metadata("design:type", String)
+], customer.prototype, "cStatus", void 0);
 exports.customer = customer;
 //# sourceMappingURL=customer.js.map

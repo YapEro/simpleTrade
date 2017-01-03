@@ -89,7 +89,8 @@ describe("测试baseDao的方法(使用customer数据)",()=>{
                 cName:`username${Math.random()*1000}`,
                 cPhoneNo:"18511222211",
                 cEmail:"email@163.com",
-                cAddress:"changsha hunan"
+                cAddress:"changsha hunan",
+                cStatus:"enable"
             }).
             end((err:Error, result:any)=>{
                 console.log(result.text);
@@ -103,7 +104,8 @@ describe("测试baseDao的方法(使用customer数据)",()=>{
                 cName: '',   //不符合规范的名称（必输）
                 cPhoneNo:"18511222211",
                 cEmail:"awef",   //不符合规范的邮件地址
-                cAddress:"changsha hunan"
+                cAddress:"changsha hunan",
+                cStatus:"enable"
             }).
             end((err:Error, result:any)=>{
                 console.log(result.text);

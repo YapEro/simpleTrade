@@ -88,7 +88,8 @@ describe("测试baseDao的方法(使用customer数据)", () => {
                 cName: `username${Math.random() * 1000}`,
                 cPhoneNo: "18511222211",
                 cEmail: "email@163.com",
-                cAddress: "changsha hunan"
+                cAddress: "changsha hunan",
+                cStatus: "enable"
             }).
                 end((err, result) => {
                 console.log(result.text);
@@ -102,7 +103,8 @@ describe("测试baseDao的方法(使用customer数据)", () => {
                 cName: '',
                 cPhoneNo: "18511222211",
                 cEmail: "awef",
-                cAddress: "changsha hunan"
+                cAddress: "changsha hunan",
+                cStatus: "enable"
             }).
                 end((err, result) => {
                 console.log(result.text);

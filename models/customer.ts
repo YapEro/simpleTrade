@@ -14,4 +14,6 @@ export class customer{
     cEmail:string;
     @propertyExt({field:"c_address", label:"地址"})
     cAddress:string;
+    @propertyExt({field:"c_status",validations:{require : true},  label:"状态"})
+    cStatus:string;
 }
