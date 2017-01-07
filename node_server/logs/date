@@ -118,3 +118,11 @@ cEmail:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
 电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
 
 [2017-01-07 12:44:07.475] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-07 17:02:48.285] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-07 17:02:48.288] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-07 17:04:10.488] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-07 17:04:10.491] [ERROR] log_date - Owner:[router.customerRouter] - {}

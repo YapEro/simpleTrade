@@ -3,6 +3,7 @@ const express = require("express");
 const customerDao_1 = require("../repo/customerDao");
 const customer_1 = require("../../models/customer");
 const logUtils_1 = require("../utils/logUtils");
+const response_1 = require("../../models/response");
 let router = express.Router();
 let cusLogger = new logUtils_1.logUtils("router.customerRouter");
 router.post('/getCustomers', function (req, res, next) {
@@ -31,7 +32,7 @@ function action4Customer(req, res, next, action) {
     }
     catch (ex) {
         cusLogger.logError(ex);
-        res.json({ result: false, message: `${ex.message}` });
+        res.json(new response_1.response(false, `${ex.message}`));
     }
 }
 module.exports = router;

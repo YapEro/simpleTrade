@@ -1,8 +1,8 @@
 import {propertyExt} from "./modelDecorator";
 
 export class product{
-    @propertyExt({field:"p_no", isPK:true, label:"主键"})
-    pNo:number;
+    @propertyExt({field:"p_id", isPK:true, label:"主键"})
+    pId:number;
     @propertyExt({field:"p_name", validations:{require : true}, label:"产品名称"})
     pName:string;
     @propertyExt({field:"p_amount", validations:{require : true}, label:"数量"})

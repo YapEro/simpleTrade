@@ -3,6 +3,7 @@ import express = require('express');
 import {customerDao} from "../repo/customerDao";
 import {customer} from "../../models/customer";
 import {logUtils} from "../utils/logUtils";
+import {response} from "../../models/response";
 let router = express.Router();
 let cusLogger = new logUtils("router.customerRouter");
 router.post('/getCustomers', function(req:Request, res:Response, next:NextFunction) {
@@ -30,7 +31,7 @@ function action4Customer(req:Request, res:Response, next:NextFunction, action:st
       cusDao.deleteData(req, res);
   } catch (ex){
     cusLogger.logError(ex);
-    res.json({result:false, message:`${ex.message}`});
+    res.json(new response(false, `${ex.message}`));
   }
 }
 module.exports = router;

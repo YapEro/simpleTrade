@@ -1,7 +1,7 @@
 import {propertyExt} from "./modelDecorator";
 export class order{
-    @propertyExt({field:"o_no", isPK:true, label:"主键"})
-    oNo:number;
+    @propertyExt({field:"o_id", isPK:true, label:"主键"})
+    oId:number;
     @propertyExt({field:"o_customer", validations:{require : true}, label:"客户"})
     oCustomer:number;
     @propertyExt({field:"o_total", validations:{require : true}, label:"总价"})

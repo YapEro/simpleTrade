@@ -12,9 +12,9 @@ const modelDecorator_1 = require("./modelDecorator");
 class product {
 }
 __decorate([
-    modelDecorator_1.propertyExt({ field: "p_no", isPK: true, label: "主键" }),
+    modelDecorator_1.propertyExt({ field: "p_id", isPK: true, label: "主键" }),
     __metadata("design:type", Number)
-], product.prototype, "pNo", void 0);
+], product.prototype, "pId", void 0);
 __decorate([
     modelDecorator_1.propertyExt({ field: "p_name", validations: { require: true }, label: "产品名称" }),
     __metadata("design:type", String)

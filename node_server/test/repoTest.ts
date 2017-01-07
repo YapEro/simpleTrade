@@ -8,8 +8,8 @@ describe("测试自定义装饰器", function(){
     it("装饰器读取属性集合",(done)=>{
         let metadatas = decorator.getMetas("customer", customer.prototype);
         console.log(JSON.stringify(metadatas));
-        expect(metadatas).to.contain({"name":"cNo",
-            "metadatas":{"field":"c_no","isPK":true,"label":"主键","type":"Number"}});
+        expect(metadatas).to.contain({"name":"cId",
+            "metadatas":{"field":"c_id","isPK":true,"label":"主键","type":"Number"}});
         done();
     });
 });
@@ -71,11 +71,11 @@ describe("测试baseDao的方法(使用customer数据)",()=>{
         it("新增客户数据", (done)=>{
             request.post(saveUrl).
             send({
-                cNo:null,
+                cId:null,
                 cName:`username${Math.random()*1000}`,
                 cPhoneNo:"18511222211",
                 cEmail:"email@163.com",
-                cId:"userId",
+                cNo:"userId",
                 cPwd:"wewewefwe",
                 cAddress:"changsha hunan"
             }).
@@ -87,11 +87,11 @@ describe("测试baseDao的方法(使用customer数据)",()=>{
         it("更新客户数据", (done)=>{
             request.post(saveUrl).
             send({
-                cNo:1,
+                cId:1,
                 cName:`username${Math.random()*1000}`,
                 cPhoneNo:"18511222211",
                 cEmail:"email@163.com",
-                cId:"userId",
+                cNo:"userId",
                 cPwd:"wewewefwe",
                 cAddress:"changsha hunan",
                 cStatus:"enable"
@@ -104,12 +104,12 @@ describe("测试baseDao的方法(使用customer数据)",()=>{
         it("更新客户数据验证测试", (done)=>{
             request.post(saveUrl).
             send({
-                cNo:1,
+                cId:1,
                 cName: '',   //不符合规范的名称（必输）
                 cPhoneNo:"18511222211",
                 cEmail:"awef",   //不符合规范的邮件地址
                 cAddress:"changsha hunan",
-                cId:"userId",
+                cNo:"userId",
                 cPwd:"wewewefwe",
                 cStatus:"enable"
             }).

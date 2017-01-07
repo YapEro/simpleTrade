@@ -1,12 +1,10 @@
 import {Request, Response} from "express";
-import {dataReader} from "./dataReader";
-import {dataWriter} from "./dataWriter";
+import {dataHandler} from "./dataHandler";
 import {logUtils} from "../utils/logUtils";
 import * as mysql from "mysql"
 export class baseDao<T>{
     protected dbConf:JSON = require("../conf/db.json");
-    private reader:dataReader;
-    private writer:dataWriter;
+    private dbHandler:dataHandler;
     private modelCort:{new():T};
     private modelName:string;
     private modelInstance:Object;
@@ -15,8 +13,7 @@ export class baseDao<T>{
         this.modelCort = cort;
         this.modelName = cort.name;
         this.modelInstance = new cort();
-        this.reader = new dataReader(this.modelName, this.modelInstance);
-        this.writer = new dataWriter(this.modelName, this.modelInstance);
+        this.dbHandler = new dataHandler(this.modelName, this.modelInstance);
         this.logger = new logUtils(`repo.${this.modelName}`);
     }
     protected handlerErr(err:Error){
@@ -25,7 +22,7 @@ export class baseDao<T>{
             throw err;
         }
     }
-    protected dataHandle(sql:string, callback:Function){
+    protected sqlExec(sql:string, callback:Function){
         let pool:mysql.IPool = mysql.createPool(this.dbConf);
         pool.getConnection((err, conn) => {
             this.handlerErr(err);
@@ -37,16 +34,16 @@ export class baseDao<T>{
         });
     }
     public queryList(req:Request, res:Response){
-        this.reader.queryList(req, res, this.handleList);
+        this.dbHandler.queryList(req, res, this.handleList);
     }
     public queryEntity(req:Request, res:Response){
-        this.reader.queryWithKey(req, res, this.handleEntity);
+        this.dbHandler.queryWithKey(req, res, this.handleEntity);
     }
     public deleteData(req:Request, res:Response){
-        this.writer.deleteData(req, res, this.beforeDelete, this.afterDelete);
+        this.dbHandler.deleteData(req, res, this.beforeDelete, this.afterDelete);
     }
     public saveData(req:Request, res:Response){
-        this.writer.saveEntity(req, res, this.beforeSave, this.afterSave);
+        this.dbHandler.saveEntity(req, res, this.beforeSave, this.afterSave);
     }
     protected handleList(data:any[]):void{}
     protected handleEntity(data:any):void{}
