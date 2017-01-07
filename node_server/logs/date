@@ -69,3 +69,52 @@ cEmail:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
 电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
 
 [2016-12-31 19:55:02.000] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 18:39:38.169] [ERROR] log_date - Owner:[repo.dataWriter] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-01 21:11:22.674] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 21:11:22.752] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-01 21:11:22.753] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 21:13:10.331] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 21:13:10.389] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-01 21:13:10.390] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 21:14:51.945] [ERROR] log_date - Owner:[repo.dataHandler] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2017-01-01 21:14:52.007] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-01 21:14:52.007] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 21:16:32.223] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-01 21:16:32.238] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 21:16:32.269] [ERROR] log_date - Owner:[repo.dataHandler] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2017-01-01 21:17:08.549] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-01 21:17:08.549] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 21:17:08.580] [ERROR] log_date - Owner:[repo.dataHandler] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2017-01-01 21:17:31.611] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-01 21:17:31.611] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 21:18:37.453] [ERROR] log_date - Owner:[repo.dataHandler] - {"code":"ER_PARSE_ERROR","errno":1064,"sqlState":"42000","index":0}
+[2017-01-01 21:18:48.421] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-01 21:18:48.421] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 21:19:23.719] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-01 21:19:23.719] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-01 21:20:03.339] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-01 21:20:03.339] [ERROR] log_date - Owner:[router.customerRouter] - {}
+[2017-01-07 12:44:07.472] [ERROR] log_date - Owner:[repo.dataHandler] - 客户名称 is require property, please input value!
+电子邮件:awef is not match /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/!
+
+[2017-01-07 12:44:07.475] [ERROR] log_date - Owner:[router.customerRouter] - {}

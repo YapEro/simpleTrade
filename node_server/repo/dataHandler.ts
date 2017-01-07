@@ -12,7 +12,7 @@ export class dataHandler{
         this.modelInstance = modelInstance;
         this.modelMetadata = getMetas(this.modelName, this.modelInstance);
     }
-    protected handlerErr(err:Error){
+    public handlerErr(err:Error){
         if(err){
             this.logger.logError(err);
             throw err;
@@ -20,13 +20,13 @@ export class dataHandler{
     }
 
     //读取对象主键属性名称
-    protected getKeyProperty():string{
+    public getKeyProperty():string{
         let keyMetadata = this.modelMetadata.find(item=>item.metadatas.isPK);
         if(keyMetadata) return keyMetadata.name;
         return null;
     }
     //转换对象
-    protected formatEntity(row:any){
+    public formatEntity(row:any){
         let formatRow = {};
         this.modelMetadata.forEach(({name, metadatas})=>{
             for(let item in row){
@@ -38,7 +38,7 @@ export class dataHandler{
         return formatRow
     }
     //转换对象集合
-    protected formatEntities(entities:any[]){
+    public formatEntities(entities:any[]){
         let formatRows = new Array();
         entities.forEach(item=>{
             formatRows.push(this.formatEntity(item));
@@ -46,7 +46,7 @@ export class dataHandler{
         return formatRows;
     }
     //从元数据中根据属性名称读取表字段名
-    protected getFieldWithProperty(property:string){
+    public getFieldWithProperty(property:string){
         let meta = this.modelMetadata.find(item =>item.name == property);
         if(meta){
             return meta.metadatas.field;
@@ -55,7 +55,7 @@ export class dataHandler{
     }
 
     //仅对日期型、字符型添加单引号
-    protected formatValue(value:any, proName:string){
+    public formatValue(value:any, proName:string){
         let meta = this.modelMetadata.find(item =>item.name == proName);
         if(meta){
             switch(meta.metadatas.type.toLocaleLowerCase()){
@@ -67,7 +67,7 @@ export class dataHandler{
         return `${value}`;
     }
     //删除最后的特殊字符
-    protected cutoffLastChar(char:string, str:string){
+    public cutoffLastChar(char:string, str:string){
         if(str && str.endsWith(char)){
             return str.substr(0, str.length - char.length);
         }

@@ -39,5 +39,13 @@ __decorate([
     modelDecorator_1.propertyExt({ field: "c_status", validations: { require: true }, label: "状态" }),
     __metadata("design:type", String)
 ], customer.prototype, "cStatus", void 0);
+__decorate([
+    modelDecorator_1.propertyExt({ field: "c_id", validations: { require: true }, label: "注册名" }),
+    __metadata("design:type", String)
+], customer.prototype, "cId", void 0);
+__decorate([
+    modelDecorator_1.propertyExt({ field: "c_pwd", validations: { require: true }, label: "登录密码" }),
+    __metadata("design:type", String)
+], customer.prototype, "cPwd", void 0);
 exports.customer = customer;
 //# sourceMappingURL=customer.js.map

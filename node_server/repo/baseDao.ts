@@ -2,7 +2,9 @@ import {Request, Response} from "express";
 import {dataReader} from "./dataReader";
 import {dataWriter} from "./dataWriter";
 import {logUtils} from "../utils/logUtils";
+import * as mysql from "mysql"
 export class baseDao<T>{
+    protected dbConf:JSON = require("../conf/db.json");
     private reader:dataReader;
     private writer:dataWriter;
     private modelCort:{new():T};
@@ -16,6 +18,23 @@ export class baseDao<T>{
         this.reader = new dataReader(this.modelName, this.modelInstance);
         this.writer = new dataWriter(this.modelName, this.modelInstance);
         this.logger = new logUtils(`repo.${this.modelName}`);
+    }
+    protected handlerErr(err:Error){
+        if(err){
+            this.logger.logError(err);
+            throw err;
+        }
+    }
+    protected dataHandle(sql:string, callback:Function){
+        let pool:mysql.IPool = mysql.createPool(this.dbConf);
+        pool.getConnection((err, conn) => {
+            this.handlerErr(err);
+            conn.query(sql, (dErr, data) => {
+                this.handlerErr(err);
+                callback(data);
+                conn.destroy();
+            });
+        });
     }
     public queryList(req:Request, res:Response){
         this.reader.queryList(req, res, this.handleList);

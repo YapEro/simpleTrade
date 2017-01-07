@@ -16,4 +16,8 @@ export class customer{
     cAddress:string;
     @propertyExt({field:"c_status",validations:{require : true},  label:"状态"})
     cStatus:string;
+    @propertyExt({field:"c_id",validations:{require : true},  label:"注册名"})
+    cId:string;
+    @propertyExt({field:"c_pwd",validations:{require : true},  label:"登录密码"})
+    cPwd:string;
 }
