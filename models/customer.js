@@ -16,9 +16,9 @@ require("reflect-metadata");
 class customer {
 }
 __decorate([
-    modelDecorator_1.propertyExt({ field: "c_no", isPK: true, label: "主键" }),
+    modelDecorator_1.propertyExt({ field: "c_id", isPK: true, label: "主键" }),
     __metadata("design:type", Number)
-], customer.prototype, "cNo", void 0);
+], customer.prototype, "cId", void 0);
 __decorate([
     modelDecorator_1.propertyExt({ field: "c_name", validations: { require: true }, label: "客户名称" }),
     __metadata("design:type", String)
@@ -40,9 +40,9 @@ __decorate([
     __metadata("design:type", String)
 ], customer.prototype, "cStatus", void 0);
 __decorate([
-    modelDecorator_1.propertyExt({ field: "c_id", validations: { require: true }, label: "注册名" }),
+    modelDecorator_1.propertyExt({ field: "c_no", validations: { require: true }, label: "注册名" }),
     __metadata("design:type", String)
-], customer.prototype, "cId", void 0);
+], customer.prototype, "cNo", void 0);
 __decorate([
     modelDecorator_1.propertyExt({ field: "c_pwd", validations: { require: true }, label: "登录密码" }),
     __metadata("design:type", String)

@@ -1,6 +1,5 @@
 "use strict";
-const dataReader_1 = require("./dataReader");
-const dataWriter_1 = require("./dataWriter");
+const dataHandler_1 = require("./dataHandler");
 const logUtils_1 = require("../utils/logUtils");
 const mysql = require("mysql");
 class baseDao {
@@ -9,8 +8,7 @@ class baseDao {
         this.modelCort = cort;
         this.modelName = cort.name;
         this.modelInstance = new cort();
-        this.reader = new dataReader_1.dataReader(this.modelName, this.modelInstance);
-        this.writer = new dataWriter_1.dataWriter(this.modelName, this.modelInstance);
+        this.dbHandler = new dataHandler_1.dataHandler(this.modelName, this.modelInstance);
         this.logger = new logUtils_1.logUtils(`repo.${this.modelName}`);
     }
     handlerErr(err) {
@@ -19,7 +17,7 @@ class baseDao {
             throw err;
         }
     }
-    dataHandle(sql, callback) {
+    sqlExec(sql, callback) {
         let pool = mysql.createPool(this.dbConf);
         pool.getConnection((err, conn) => {
             this.handlerErr(err);
@@ -31,16 +29,16 @@ class baseDao {
         });
     }
     queryList(req, res) {
-        this.reader.queryList(req, res, this.handleList);
+        this.dbHandler.queryList(req, res, this.handleList);
     }
     queryEntity(req, res) {
-        this.reader.queryWithKey(req, res, this.handleEntity);
+        this.dbHandler.queryWithKey(req, res, this.handleEntity);
     }
     deleteData(req, res) {
-        this.writer.deleteData(req, res, this.beforeDelete, this.afterDelete);
+        this.dbHandler.deleteData(req, res, this.beforeDelete, this.afterDelete);
     }
     saveData(req, res) {
-        this.writer.saveEntity(req, res, this.beforeSave, this.afterSave);
+        this.dbHandler.saveEntity(req, res, this.beforeSave, this.afterSave);
     }
     handleList(data) { }
     handleEntity(data) { }
