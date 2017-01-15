@@ -6,7 +6,7 @@ let logger = new logUtils_1.logUtils("routers.index");
 /* GET home page. */
 router.get('/', function (req, res, next) {
     logger.logDebug("homepage!");
-    res.json("test");
+    res.sendFile("index.html");
 });
 module.exports = router;
 //# sourceMappingURL=index.js.map

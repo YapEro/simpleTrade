@@ -15,7 +15,8 @@
   ],
   "include":[
     "./node_server/",
-    "./models/"
+    "./models/",
+    "./ng_client/"
   ],
   "exclude":[
     "./node_modules/**/*.*"
