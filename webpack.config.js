@@ -4,11 +4,13 @@
 //var HtmlwebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    devtool:"eval-source-map",
     // 入口
     entry: "./ng_client/index.ts",
     // 输出的文件名
     output: {
-        filename: './ng_client/dist/bundle.js'
+        path : __dirname + "/ng_client/dist/",
+        filename: 'bundle.js'
     },
     resolve: {
         // Add `.ts` and `.tsx` as a resolvable extension.
