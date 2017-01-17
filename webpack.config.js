@@ -1,14 +1,14 @@
 /**
  * Created by sean on 2017/1/15.
  */
-var HtmlwebpackPlugin = require('html-webpack-plugin');
+//var HtmlwebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // 入口
-    entry: "./index.ts",
+    entry: "./ng_client/index.ts",
     // 输出的文件名
     output: {
-        filename: 'bundle.js'
+        filename: './ng_client/dist/bundle.js'
     },
     resolve: {
         // Add `.ts` and `.tsx` as a resolvable extension.

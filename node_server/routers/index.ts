@@ -8,5 +8,4 @@ router.get('/', function(req:Request, res:Response, next:NextFunction) {
   logger.logDebug("homepage!")
   res.sendFile("index.html");
 });
-
 module.exports = router;
