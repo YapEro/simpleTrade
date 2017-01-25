@@ -8,7 +8,7 @@
     {
       "category":"log_date",
       "type": "dateFile",
-      "filename": "./node_server/logs/date",
+      "filename": "date",
       "alwaysIncludePattern": true,
       "pattern": "-yyyy-MM-dd-hh.log"
 

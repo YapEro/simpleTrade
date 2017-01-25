@@ -1,4 +1,4 @@
-import {Request, Response,NextFunction} from "express";
+import {Request, Response, NextFunction} from "express";
 import {logUtils} from "../utils/logUtils";
 import express = require('express');
 let router = express.Router();

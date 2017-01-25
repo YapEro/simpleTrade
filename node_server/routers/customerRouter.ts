@@ -1,9 +1,9 @@
 import {Request, Response, NextFunction} from "express";
-import express = require('express');
 import {customerDao} from "../repo/customerDao";
 import {customer} from "../../models/customer";
 import {logUtils} from "../utils/logUtils";
 import {response} from "../../models/response";
+import express = require('express');
 let router = express.Router();
 let cusLogger = new logUtils("router.customerRouter");
 router.post('/getCustomers', function(req:Request, res:Response, next:NextFunction) {

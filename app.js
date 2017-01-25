@@ -34,6 +34,7 @@ app.use(function (err, req, res, next) {
     res.send('error:' + err.message);
 });
 app.listen(3000);
+console.log("running!");
 //platformBrowserDynamic().bootstrapModule(AppModule);
 module.exports = app;
 //# sourceMappingURL=app.js.map

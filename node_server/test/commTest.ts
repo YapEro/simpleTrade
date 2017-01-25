@@ -1,4 +1,4 @@
-import * as chai from 'chai';
+import * as chai from "chai";
 
 let expect = chai.expect;
 describe("常规测试内容", function(){

@@ -1,9 +1,9 @@
 "use strict";
-const express = require("express");
 const customerDao_1 = require("../repo/customerDao");
 const customer_1 = require("../../models/customer");
 const logUtils_1 = require("../utils/logUtils");
 const response_1 = require("../../models/response");
+const express = require("express");
 let router = express.Router();
 let cusLogger = new logUtils_1.logUtils("router.customerRouter");
 router.post('/getCustomers', function (req, res, next) {
