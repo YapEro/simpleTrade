@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 import {dataHandler} from "./dataHandler";
 import {logUtils} from "../utils/logUtils";
-import * as mysql from "mysql"
+import * as mysql from "mysql";
 export class baseDao<T>{
     protected dbConf:JSON = require("../conf/db.json");
     private dbHandler:dataHandler;

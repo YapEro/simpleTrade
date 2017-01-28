@@ -1,4 +1,4 @@
-import * as chai from 'chai';
+import * as chai from "chai";
 import * as decorator from "../../models/modelDecorator";
 import {customer} from "../../models/customer";
 import * as superTest from "supertest";

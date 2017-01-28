@@ -9,6 +9,7 @@ import log4js = require("log4js");
 
 let index = require('./node_server/routers/index');
 let cusRouter = require('./node_server/routers/customerRouter');
+let metaRouter = require('./node_server/routers/metadataRouter');
 let app = express();
 let logger = log4js.getLogger("console");
 let viewPath = path.join(__dirname, "ng_client");
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/', index);
 app.use('/customer', cusRouter);
+app.use('/metadatas', metaRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req:Request, res:Response, next:NextFunction) {
@@ -39,5 +41,6 @@ app.use(function(err:any, req:Request, res:Response, next:NextFunction) {
 });
 app.listen(3000);
 
+console.log("running!");
 //platformBrowserDynamic().bootstrapModule(AppModule);
 module.exports = app;

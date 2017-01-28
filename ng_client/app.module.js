@@ -11,13 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const app_component_1 = require("./app.component");
+const kendo_angular_grid_1 = require("@progress/kendo-angular-grid");
+const kendo_angular_buttons_1 = require("@progress/kendo-angular-buttons");
+const http_1 = require("@angular/http");
+const product_service_1 = require("./product/product.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule],
+        imports: [platform_browser_1.BrowserModule, kendo_angular_grid_1.GridModule, kendo_angular_buttons_1.ButtonsModule, http_1.HttpModule, http_1.JsonpModule],
         declarations: [app_component_1.AppComponent],
-        bootstrap: [app_component_1.AppComponent]
+        bootstrap: [app_component_1.AppComponent],
+        providers: [product_service_1.ProductService]
     }),
     __metadata("design:paramtypes", [])
 ], AppModule);

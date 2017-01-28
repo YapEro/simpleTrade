@@ -1,4 +1,5 @@
 import * as chai from "chai";
+import {product} from "../../models/product";
 
 let expect = chai.expect;
 describe("常规测试内容", function(){

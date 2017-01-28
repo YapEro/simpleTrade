@@ -1,8 +1,8 @@
 import {logUtils} from "../utils/logUtils";
 import {getMetas} from "../../models/modelDecorator";
-import * as mysql from "mysql"
+import * as mysql from "mysql";
 import {isArray} from "util";
-import {Request, Response} from "express"
+import {Request, Response} from "express";
 import {response} from "../../models/response";
 
 export class dataHandler{
